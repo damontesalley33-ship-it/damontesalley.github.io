@@ -8,7 +8,7 @@ Damonte's Webpage
 <body>
 <h1>Welcome to My Personal Webpage</h1>
 <p>This is a work in progress. Check back soon for updates!</p>
-<img src="cat.jpg" alt="A cute cat" width="300" height="200"
+<img src="images/your-image.jpg" alt="Description of image" />
 </body>
 </html>
 		 Item 1 
