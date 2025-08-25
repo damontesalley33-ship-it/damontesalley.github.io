@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,12 +8,12 @@ Damonte's Webpage
 <body>
 <h1>Welcome to My Personal Webpage</h1>
 <p>This is a work in progress. Check back soon for updates!</p>
+<img src="cat.jpg" alt="A cute cat" width="300" height="200"
 </body>
 </html>
-		<li> Item 1 </li>
-		<li> Item 2 </li>
-		<li> Item 3 </li>
-</ol>
+		 Item 1 
+		 Item 2 
+		 Item 3 
 <ol>
 		<li> Item 1 </li>
 		<li> Item 2 </li>
