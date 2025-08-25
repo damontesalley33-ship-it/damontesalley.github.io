@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Damonte'  - Personal Webpage</title>
+Damonte's - Personal Webpage
 </head>
 <body>
 <h1>Welcome to My Personal Webpage</h1>
