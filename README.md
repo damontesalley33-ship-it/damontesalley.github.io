@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Monte Salley Portfolio</title>
 </head>
 <body>
 
@@ -32,20 +31,33 @@
 
 <!-- ------------------ MUSIC DROPDOWN ------------------ -->
 <section class="music-section">
-    <h2>Get to Know Me More</h2>
-    <p>Pick one of my favorite songs:</p>
+    <h2>My Favorite Songs</h2>
+    <p>Get to know me a little more:</p>
 
-    <select id="songSelect" onchange="showSongQuote()">
-        <option value="">-- Select an artist & song --</option>
-        <option value="Youngboy – Solar Eclipse">Youngboy – Solar Eclipse</option>
-        <option value="Youngboy – No Smoke">Youngboy – No Smoke</option>
-        <option value="Lil Poppa – Love & War">Lil Poppa – Love & War</option>
-        <option value="Lil Poppa – Purple Hearts">Lil Poppa – Purple Hearts</option>
-        <option value="Hunxho – Your Friends">Hunxho – Your Friends</option>
-        <option value="Hunxho – Let’s Ride">Hunxho – Let’s Ride</option>
+    <select id="songSelect" onchange="showSongOptions()">
+        <option value="">-- Select a song --</option>
+
+        <optgroup label="NBA Youngboy">
+            <option value="Solar Eclipse">Solar Eclipse</option>
+            <option value="No Smoke">No Smoke</option>
+        </optgroup>
+
+        <optgroup label="Lil Poppa">
+            <option value="Love & War">Love & War</option>
+            <option value="Purple Hearts">Purple Hearts</option>
+        </optgroup>
+
+        <optgroup label="Hunxho">
+            <option value="Your Friends">Your Friends</option>
+            <option value="Let's Ride">Let's Ride</option>
+        </optgroup>
     </select>
 
-    <p id="songQuote" class="song-quote-text"></p>
+    <div id="songActions" class="song-actions" style="display:none;">
+        <p id="songQuote"></p>
+        <button onclick="explainSong()">Why I Like It</button>
+        <button onclick="sampleSong()">Play Sample</button>
+    </div>
 </section>
 
 <!-- ------------------ GITHUB API WIDGET ------------------ -->
@@ -68,48 +80,64 @@ async function loadQuote() {
         const res = await fetch("https://api.quotable.io/random?tags=technology,famous-quotes");
         const data = await res.json();
         document.getElementById("quote").textContent = data.content;
-    } catch (error) {
+    } catch {
         document.getElementById("quote").textContent = "Could not load quote.";
     }
 }
 loadQuote();
 
-// ------------------ SONG DROPDOWN ------------------
-function showSongQuote() {
-    const selection = document.getElementById("songSelect").value;
-    const output = document.getElementById("songQuote");
+// ------------------ SONG DROPDOWN LOGIC ------------------
+function showSongOptions() {
+    const selected = document.getElementById("songSelect").value;
+    const actions = document.getElementById("songActions");
+    const quote = document.getElementById("songQuote");
 
-    if (!selection) {
-        output.textContent = "";
+    if (!selected) {
+        actions.style.display = "none";
+        quote.textContent = "";
         return;
     }
 
-    output.textContent = `"${selection}" is one of my favorite songs — get to know me a little more.`;
+    actions.style.display = "block";
+    quote.textContent = `"${selected}" — get to know me a little more.`;
+}
+
+function explainSong() {
+    const song = document.getElementById("songSelect").value;
+    alert(`Why I like "${song}":\n\nIt hits my vibe, matches my energy, and gets me locked in.`);
+}
+
+function sampleSong() {
+    const song = document.getElementById("songSelect").value;
+    alert(`Sample for "${song}" would play here! (Feature coming soon)`);
 }
 
 // ------------------ GITHUB API ------------------
-const repoContainer = document.getElementById("repo-container");
-
-// replace 'octocat' with your GitHub username later
 fetch("https://api.github.com/users/octocat/repos")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
+        const repoContainer = document.getElementById("repo-container");
         repoContainer.innerHTML = "";
+
         data.slice(0, 3).forEach(repo => {
             const div = document.createElement("div");
             div.className = "repo";
+
             div.innerHTML = `
                 <h3>${repo.name}</h3>
                 <p>${repo.description || "No description available."}</p>
                 <a href="${repo.html_url}" target="_blank">View on GitHub</a>
             `;
+
             repoContainer.appendChild(div);
         });
     })
-    .catch(err => {
-        repoContainer.innerHTML = "Error loading repositories.";
+    .catch(() => {
+        document.getElementById("repo-container").textContent =
+            "Error loading repositories.";
     });
 </script>
 
 </body>
 </html>
+
