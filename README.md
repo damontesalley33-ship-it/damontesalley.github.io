@@ -7,7 +7,7 @@ Damonte's Webpage
 </head>
 <body>
 <h1>Welcome to My Personal Webpage</h1>
-<p>This is a work in progress. Check back soon for updates!</p>
+<p>Let me show you a little about myself!</p>
 <img src="imagess/IMG_1728.jpg" alt="My photo" width="400">
 
 </body>
