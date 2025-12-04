@@ -31,6 +31,12 @@
 <script>
 // GitHub API Widget
 const repoContainer = document.getElementById("repo-container");
+    <section class="api-widget">
+    <h2>Random Programming Quote</h2>
+    <p id="quote">Loading quote...</p>
+    <button onclick="loadQuote()">New Quote</button>
+</section>
+
 
 fetch("https://api.github.com/users/octocat/repos") 
 // Replace "octocat" with your GitHub username when ready
