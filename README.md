@@ -113,7 +113,7 @@ function sampleSong() {
 }
 
 // ------------------ GITHUB API ------------------
-fetch("https://api.github.com/users/octocat/repos")
+fetch("https://api.github.com/users/damontesalley.github.io/repos")
     .then(res => res.json())
     .then(data => {
         const repoContainer = document.getElementById("repo-container");
